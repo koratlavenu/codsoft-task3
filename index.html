@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="caluculater.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1 style="font-style: oblique;">calculator</h1>
+    <div class="calculator">
+        <input type="text" id="display">
+        <div class="buttons">
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendOperator('+')">+</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendOperator('*')">*</button>
+            <button onclick="clearDisplay()">c</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendOperator('/')">/</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById('display');
+let currentInput = '';
+let operator = '';
+let firstInput = '';
+
+function appendNumber(number) {
+    currentInput += number;
+    display.value = currentInput;
+}
+
+function appendOperator(op) {
+    if (operator === '') {
+        firstInput = currentInput;
+        currentInput = '';
+        operator = op;
+    } else {
+        calculateResult();
+        operator = op;
+    }
+}
+
+function calculateResult() {
+    if (currentInput !== '') {
+        switch (operator) {
+            case '+':
+                currentInput = String(parseFloat(firstInput) + parseFloat(currentInput));
+                break;
+            case '-':
+                currentInput = String(parseFloat(firstInput) - parseFloat(currentInput));
+                break;
+            case '*':
+                currentInput = String(parseFloat(firstInput) * parseFloat(currentInput));
+                break;
+            case '/':
+                currentInput = String(parseFloat(firstInput) / parseFloat(currentInput));
+                break;
+        }
+        display.value = currentInput;
+        operator = '';
+    }
+}
+
+function clearDisplay() {
+    display.value = '';
+    currentInput = '';
+    operator = '';
+    firstInput = '';
+}
+
+    </script>
+</body>
+</html>
+
+</body>
+</html>
